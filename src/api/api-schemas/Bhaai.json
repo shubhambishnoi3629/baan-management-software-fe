@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "BhaaiBase.json"
+    }
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    }
+  },
+  "required": [
+    "id"
+  ],
+  "additionalProperties": false,
+  "title": "Bhaai",
+  "$id": "Bhaai.json"
+}

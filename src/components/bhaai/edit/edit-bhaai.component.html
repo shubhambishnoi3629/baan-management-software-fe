@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{data.id ? 'Edit' : 'Create'}} Bhaai</h1>
+<div mat-dialog-content>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Marriage</mat-label>
+      <input matInput [(ngModel)]="data.marriage">
+    </mat-form-field>
+  </p>
+  <p>
+    <mat-form-field appearance="fill">
+      <mat-label>Marriage</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="data.date">
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </p>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-raised-button color="accent" (click)="onNoClick()">close</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data.marriage && data.date" cdkFocusInitial>{{data.id ? 'Edit' : 'Create'}}</button>
+</div>

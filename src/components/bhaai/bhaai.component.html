@@ -1,0 +1,59 @@
+<div class="bhaai-container mat-elevation-z8">
+    <button class="create" mat-raised-button color="primary" (click)="createBhaai()">Create New</button>
+    <div class="bhaai-loading-shade"
+         *ngIf="isLoadingResults || isRateLimitReached">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+  
+    <div class="bhaai-table-container">
+  
+      <table mat-table [dataSource]="data" class="bhaai-table"
+             matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+        <!-- Number Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.index + 1}}</td>
+        </ng-container>
+  
+        <!-- Title Column -->
+        <ng-container matColumnDef="marriage">
+          <th mat-header-cell *matHeaderCellDef>Marriage</th>
+          <td mat-cell *matCellDef="let row">{{row.marriage}}</td>
+        </ng-container>
+  
+        <!-- State Column -->
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef>Date</th>
+          <td mat-cell *matCellDef="let row">{{row.date | date}}</td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="edit">
+            <th mat-header-cell *matHeaderCellDef>Edit</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="accent" (click)="editBhaai(row)">Edit</button>
+            </td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef>Delete</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="warn" (click)="deleteBhaai(row.id)">Delete</button>
+            </td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="open">
+            <th mat-header-cell *matHeaderCellDef>Open</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="primary" (click)="openBhaai(row.id)">Open</button>
+            </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  

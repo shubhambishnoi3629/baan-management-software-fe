@@ -1,0 +1,335 @@
+openapi : "3.0.3"
+info:
+  title : Baan management API overview
+  version: 1.0.0
+paths:
+  /bhaai:
+    get:
+      tags:
+        - Bhaai
+      operationId: getListBhaai
+      summary: to get all bhaais
+      responses:
+        '200':
+          description: List of Bhaai
+          content:
+            application/json; chartset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BhaaiList'
+    post:
+      tags:
+        - Bhaai
+      operationId: createBhaai
+      summary: to create bhaai
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/BhaaiBase'
+      responses:
+        "200":
+          description: New created Bhaai object
+          content:
+            applocation/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Bhaai'
+  /bhaai/{id}:
+    parameters:
+      - $ref: '#/components/parameters/ResourceId'
+    get:
+      parameters:
+        - $ref: '#/components/parameters/Total'
+      tags:
+        - Bhaai
+      operationId: totalOfBhaai
+      summary: to total of bhaai
+      responses:
+        '200':
+          description: Get total of bhaai
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BhaaiTotal'
+    put:
+      tags:
+        - Bhaai
+      operationId: updateBhaaiId
+      summary: to update bhaai
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/BhaaiBase'
+      responses:
+        '200':
+          description:  Update bhaai
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Bhaai'      
+    delete:
+      tags:
+        - Bhaai
+      operationId: deleteBhaaiById
+      summary: to delete bhaai by id
+      responses:
+        '200':
+          description: ok
+  /bhaai/{bhaaiId}/baan:
+    parameters:
+      - $ref: '#/components/parameters/BhaaiId'
+    get:
+      tags:
+        - Baan
+      operationId: getBaan
+      summary: to get all baan in bhaai 
+      responses:
+        '200':
+          description: List of baan
+          content:
+            application/json; chartset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BaanList'
+    post:
+      tags:
+        - Baan
+      operationId: createBaan 
+      summary: to create baan
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/BaanBase'
+      responses:
+        "200":
+          description: New created Bhaai object
+          content:
+            applocation/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BaanList'
+  /bhaai/{bhaaiId}/baan/{id}:
+    parameters:
+      - $ref: '#/components/parameters/BhaaiId'
+      - $ref: '#/components/parameters/ResourceId'
+    put:
+      tags:
+        - Baan
+      operationId: updateBaanById
+      summary: to update baan by id
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/BaanBase'
+      responses:
+        '200':
+          description:  Update baan
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Baan'   
+    delete:
+      tags:
+        - Baan
+      operationId: deleteBaanById
+      summary: to delete an by id 
+      responses:
+        '200':
+          description: ok
+  /search:
+    parameters:
+      - $ref: '#/components/parameters/FirstName'
+      - $ref: '#/components/parameters/LastName'
+      - $ref: '#/components/parameters/FathersName'
+      - $ref: '#/components/parameters/Address'
+      - $ref: '#/components/parameters/NickName'
+    get:
+      tags:
+        - Baan
+      operationId: searchBaan
+      summary: to search baan 
+      responses:
+        '200':
+          description:  Searched baan
+          content:
+            application/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/BaanList'
+  /giveBaan:
+    post:
+      tags:
+        - Baan
+      operationId: giveBaan
+      summary: to give baan
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/GiveBaan'
+      responses:
+        "200":
+          description: ok
+
+components:
+  parameters:
+    ResourceId:
+      required: true
+      description: Id of the resource to be worked on
+      in: path
+      name: 'id'
+      schema:
+        type: string
+        example: adasdas-dwqd3-fcsd-dwedd
+    BhaaiId:
+      required: true
+      description: Id of bhaai we worked oen
+      in: path
+      name: 'bhaaiId'
+      schema:
+        type: string
+        example: adasdas-dwqd3-fcsd-dwedd
+    FirstName:
+      description: Name for search
+      in: query
+      name: 'firstName'
+      schema:
+        type: string
+        example: shubham
+    LastName:
+      description: Last name for search
+      in: query
+      name: 'lastName'
+      schema:
+        type: string
+        example: godara    
+    FathersName:
+      description: Father name for search
+      in: query
+      name: 'fatherName'
+      schema:
+        type: string
+        example: sh. bhagwan dass
+    Address:
+      description: Address for search
+      in: query
+      name: 'address'
+      schema:
+        type: string
+        example: mp rohi
+    NickName:
+      description: NickName for search
+      in: query
+      name: 'nickName'
+      schema:
+        type: string
+        example: gholio bro
+    Total:
+      description: Get total baan in bhaai
+      in: query
+      name: 'total'
+      schema: 
+        type: number
+        example: 1
+  schemas:
+    BhaaiList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Bhaai'
+    BhaaiTotal:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Bhaai'
+      properties:
+        total:
+          type: number
+          example: 50000000
+      additionalProperties: false
+    Bhaai:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BhaaiBase'
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: fsdfsdf-fsdfsdf-sdfsdf-fsdf3
+      required:
+        - id
+      additionalProperties: false
+    BhaaiBase:
+      type: object
+      properties:
+        marriage:
+          type: string
+          example: 'Rankit weds deepakshi'
+        date:
+          type: string
+          example: "23:02:2022T09:09:45Z"
+      required:
+        - marriage
+        - date
+      additionalProperties: false
+    BaanList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Baan'
+    BaanBase:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: shubham
+        lastName:
+          type: string
+          example: godara  
+        fathersName:
+          type: string
+          example: bhagwan dass
+        address:
+          type: string
+          example: mp rohi
+        nickName:
+          type: string
+          example: gholio 
+        amount:
+          type: number
+          example: 12345 
+      required:
+        -  firstName
+        -  lastName 
+        -  fathersName
+        -  address
+        -  nickName
+        -  amount
+      additionalProperties: false 
+    Baan:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/BaanBase'
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: fsdfsdf-fsdfsdf-sdfsdf-fsdf3
+        BhaaiId:
+          type: string
+          format: uuid
+          example: addf-dddfg-hhjj-hhjk
+      required:
+        - id
+        - bhaaiId
+      additionalProperties: false
+    GiveBaan:
+      type: object
+      properties:
+        baanId:
+          type: string
+          format: uuid
+          example: fsdfsdf-fsdfsdf-sdfsdf-fsdf3
+        amount:
+          type: number
+          example: 12345 
+      required:
+        - baanId
+        - amount
+      additionalProperties: false
