@@ -8,7 +8,7 @@ import { BhaaiTotal } from 'src/api/types/BhaaiTotal';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
-    baseURL = 'http://localhost:3000/api';
+    baseURL = '/api';
     constructor(
         private http: HttpClient,
     ) { }
