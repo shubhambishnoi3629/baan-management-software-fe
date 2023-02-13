@@ -1,0 +1,60 @@
+<div class="baan-container">
+  <div *ngIf="!isLoadingResults" class="heading">
+    <h1>{{bhaai.marriage}}</h1>
+    <h3>Total: {{bhaai.total}} Rs</h3>
+    <button class="create" mat-raised-button color="primary" (click)="createBaan()">Create New</button>
+  </div>
+    <div class="baan-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+  
+    <div class="baan-table-container mat-elevation-z8">
+  
+      <table mat-table [dataSource]="data" class="baan-table"
+             matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+        <!-- Number Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.index + 1}}</td>
+        </ng-container>
+  
+        <!-- Title Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let row">{{row.firstName}} {{row.lastName}} ({{row.nickName}})</td>
+        </ng-container>
+  
+        <!-- State Column -->
+        <ng-container matColumnDef="fathersName">
+          <th mat-header-cell *matHeaderCellDef>Father's Name</th>
+          <td mat-cell *matCellDef="let row">{{row.fathersName}}</td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="village">
+            <th mat-header-cell *matHeaderCellDef>Village</th>
+            <td mat-cell *matCellDef="let row">{{row.address}}</td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let row">{{row.amount}}</td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let row">
+                <button mat-raised-button color="accent" (click)="editBaan(row)">Edit</button>
+                <button mat-raised-button color="warn" (click)="deleteBaan(row.id)">Delete</button>
+            </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </div>
+  

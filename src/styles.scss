@@ -2,3 +2,86 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@import '@angular/material/theming';
+
+// Be sure that you only ever include 'mat-core' mixin once!
+// it should not be included for each theme.
+@include mat-core(); 
+
+// define a real custom palette (using http://mcg.mbitson.com)
+$bv-brand: (
+    50 : #c0c3c3,
+    100 : #989d9d,
+    200 : #7c8282,
+    300 : #595d5d,
+    400 : #4a4e4e,
+    500 : #3b3e3e,
+    600 : #2c2e2e,
+    700 : #1d1f1f,
+    800 : #0e0f0f,
+    900 : #000000,
+    A100 : #a6d2d2,
+    A200 : #63afaf,
+    A400 : #476565,
+    A700 : #444f4f,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #ffffff,
+        400 : #ffffff,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #ffffff,
+        A700 : #ffffff,
+    )
+);
+
+$bv-orange: (
+    50 : #def7f5,
+    100 : #a0e9e2,
+    200 : #72dfd4,
+    300 : #38d1c3,
+    400 : #2cbfb1,
+    500 : #26a69a,
+    600 : #208d83,
+    700 : #1b746c,
+    800 : #155b55,
+    900 : #0f423e,
+    A100 : #cefdf9,
+    A200 : #6cf9ec,
+    A400 : #1ce3d0,
+    A700 : #25c0b2,
+    contrast: (
+        50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #ffffff,
+        600 : #ffffff,
+        700 : #ffffff,
+        800 : #ffffff,
+        900 : #ffffff,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
+);
+
+// mandatory stuff for theming
+$bv-palette-primary: mat-palette($bv-brand);
+$bv-palette-accent:  mat-palette($bv-orange);
+
+// include the custom theme components into a theme object
+$bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent);
+
+// include the custom theme object into the angular material theme
+@include angular-material-theme($bv-theme);

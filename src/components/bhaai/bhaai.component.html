@@ -1,11 +1,14 @@
-<div class="bhaai-container mat-elevation-z8">
+<div class="bhaai-container">
+  <div class="headings">
+    <button class="create" mat-raised-button color="accent" (click)="search()">Search</button>
     <button class="create" mat-raised-button color="primary" (click)="createBhaai()">Create New</button>
+  </div>
     <div class="bhaai-loading-shade"
-         *ngIf="isLoadingResults || isRateLimitReached">
+         *ngIf="isLoadingResults">
       <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
     </div>
   
-    <div class="bhaai-table-container">
+    <div class="bhaai-table-container mat-elevation-z8">
   
       <table mat-table [dataSource]="data" class="bhaai-table"
              matSort matSortActive="created" matSortDisableClear matSortDirection="desc">

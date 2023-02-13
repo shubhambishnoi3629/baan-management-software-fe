@@ -1,0 +1,49 @@
+<div class="baan-container mat-elevation-z8">
+    <div class="baan-table-container">
+  
+      <table mat-table [dataSource]="dataList" class="baan-table"
+             matSort matSortActive="created" matSortDisableClear matSortDirection="desc">
+        <!-- Number Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let row">{{row.index + 1}}</td>
+        </ng-container>
+  
+        <!-- Title Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let row">{{row.firstName}} {{row.lastName}} ({{row.nickName}})</td>
+        </ng-container>
+  
+        <!-- State Column -->
+        <ng-container matColumnDef="fathersName">
+          <th mat-header-cell *matHeaderCellDef>Father's Name</th>
+          <td mat-cell *matCellDef="let row">{{row.fathersName}}</td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="village">
+            <th mat-header-cell *matHeaderCellDef>Village</th>
+            <td mat-cell *matCellDef="let row">{{row.address}}</td>
+        </ng-container>
+  
+        <!-- Edit Column -->
+        <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount</th>
+            <td mat-cell *matCellDef="let row">{{row.amount}}</td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+    <div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>New Baan Amount</mat-label>
+        <input matInput type="number" [(ngModel)]="giveBaanAmount">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="giveBaan()">Give Baan</button>
+    </div>
+  </div>
+  

@@ -77,12 +77,67 @@ export class ApiService {
         id: string,
         total: boolean = false,
     ): Observable<BhaaiTotal> {
+        return of(
+            {
+                id: 'asdasd-adsdasd-asdas-dasd233',
+                marriage: 'Rankit weds Deepakshi',
+                date: '2000-10-31T01:30:00.000-05:00',
+                total: 40000,
+            }
+        );
         return this.http.get<BhaaiTotal>(`${this.baseURL}/bhaai/${id}?total=${total ? 1 : 0}`);
     }
 
     getBaanList(
         bhaaiId: string,
     ): Observable<BaanList> {
+        return of([
+            {
+                id: 'asdasd-adsdasd-asdas-dasd233',
+                firstName: 'rankit',
+                lastName: 'bishnoi',
+                fathersName: 'bhagwaan dass',
+                address: 'mp rohi',
+                nickName: 'baruto',
+                amount: 5000,
+            },
+            {
+                id: 'asdasd-adsdasd-asdas-dasd233',
+                firstName: 'rankit',
+                lastName: 'bishnoi',
+                fathersName: 'bhagwaan dass',
+                address: 'mp rohi',
+                nickName: 'baruto',
+                amount: 5000,
+            },
+            {
+                id: 'asdasd-adsdasd-asdas-dasd233',
+                firstName: 'rankit',
+                lastName: 'bishnoi',
+                fathersName: 'bhagwaan dass',
+                address: 'mp rohi',
+                nickName: 'baruto',
+                amount: 5000,
+            },
+            {
+                id: 'asdasd-adsdasd-asdas-dasd233',
+                firstName: 'rankit',
+                lastName: 'bishnoi',
+                fathersName: 'bhagwaan dass',
+                address: 'mp rohi',
+                nickName: 'baruto',
+                amount: 5000,
+            },
+            {
+                id: 'asdasd-adsdasd-asdas-dasd233',
+                firstName: 'rankit',
+                lastName: 'bishnoi',
+                fathersName: 'bhagwaan dass',
+                address: 'mp rohi',
+                nickName: 'baruto',
+                amount: 5000,
+            },
+        ]);
         return this.http.get<BaanList>(`${this.baseURL}/bhaai/${bhaaiId}/baan`);
     }
 

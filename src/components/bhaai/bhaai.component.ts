@@ -1,13 +1,15 @@
-import {HttpClient} from '@angular/common/http';
-import {Component, ViewChild, AfterViewInit} from '@angular/core';
+import {Component, AfterViewInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import {MatPaginator} from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import {merge, Observable, of as observableOf, of, Subject} from 'rxjs';
+import {of as observableOf, Subject} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
+import { BaanList } from 'src/api/types/BaanList';
 import { Bhaai } from 'src/api/types/BhaaiList';
 import { ApiService } from 'src/services/api.service';
+import { EditBaanComponent } from '../baan/edit/edit-baan.component';
 import { EditBhaaiComponent } from './edit/edit-bhaai.component';
+import { SearchBaanComponent } from './searchresult/search-baan.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 /**
  * @title Table retrieving data through HTTP
@@ -22,7 +24,6 @@ export class BhaaiComponent implements AfterViewInit {
   data: Bhaai[] = [];
 
   isLoadingResults = true;
-  isRateLimitReached = false;
 
   loadAgain = new Subject();
 
@@ -30,6 +31,7 @@ export class BhaaiComponent implements AfterViewInit {
     private apiService: ApiService,
     private router: Router,
     public dialog: MatDialog,
+    private _snackBar: MatSnackBar,
   ) {
     this.loadAgain
       .pipe(
@@ -40,7 +42,6 @@ export class BhaaiComponent implements AfterViewInit {
         }),
         map(data => {
           this.isLoadingResults = false;
-          this.isRateLimitReached = data === null;
 
           if (data === null) {
             return [];
@@ -53,7 +54,7 @@ export class BhaaiComponent implements AfterViewInit {
   }
 
   openBhaai(bhaaiId: string) {
-    this.router.navigate([`/bhaai/${bhaaiId}`]);
+    this.router.navigate([`/bhaai/${bhaaiId}/baan`]);
   }
 
   createBhaai() {
@@ -64,7 +65,37 @@ export class BhaaiComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       this.apiService.createBhaai(result).subscribe(() => {
         this.loadAgain.next({});
+        this._snackBar.open('Bhaai has been created', 'close');
       });
+    });
+  }
+
+  search() {
+    const dialogRef = this.dialog.open(EditBaanComponent, {
+      data: {
+        search: true,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.apiService.searchBaan(result).subscribe(() => {
+        this.openSearchResult(result);
+      });
+    });
+  }
+
+  openSearchResult(data: BaanList) {
+    const dialogRef = this.dialog.open(SearchBaanComponent, {
+      data,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.apiService.giveBaan(result.bhaaiId, result.amount).subscribe(() => {
+          this.loadAgain.next({});
+          this._snackBar.open('New baan has been added', 'close');
+        });
+      }
     });
   }
 
@@ -76,6 +107,7 @@ export class BhaaiComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       this.apiService.updateBhaai(result.id, result).subscribe(() => {
         this.loadAgain.next({});
+        this._snackBar.open('Bhaai has been updated', 'close');
       });
     });
   }
@@ -83,6 +115,7 @@ export class BhaaiComponent implements AfterViewInit {
   deleteBhaai(bhaaiId: string) {
     this.apiService.deleteBhaai(bhaaiId).subscribe(() => {
       this.loadAgain.next({});
+      this._snackBar.open('Bhaai has been deleted', 'close');
     })
   }
 

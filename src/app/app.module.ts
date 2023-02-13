@@ -11,6 +11,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { EditBhaaiComponent } from 'src/components/bhaai/edit/edit-bhaai.component';
+import { EditBaanComponent } from 'src/components/baan/edit/edit-baan.component';
+import { BaanComponent } from 'src/components/baan/baan.component';
+import { SearchBaanComponent } from 'src/components/bhaai/searchresult/search-baan.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +21,9 @@ import { EditBhaaiComponent } from 'src/components/bhaai/edit/edit-bhaai.compone
     HeaderComponent,
     BhaaiComponent,
     EditBhaaiComponent,
+    BaanComponent,
+    EditBaanComponent,
+    SearchBaanComponent,
   ],
   imports: [
     BrowserModule,

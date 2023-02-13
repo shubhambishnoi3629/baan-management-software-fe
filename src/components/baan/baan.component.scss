@@ -1,9 +1,9 @@
 /* Structure */
-.bhaai-container {
-  position: relative;
+.baan-container {
+    position: relative;
 }
 
-.bhaai-table-container {
+.baan-table-container {
   position: relative;
   max-height: 80vh;
   overflow: auto;
@@ -15,10 +15,9 @@
 
 table {
   width: 100%;
-  font-family: monospace !important;
 }
 
-.bhaai-loading-shade {
+.baan-loading-shade {
   position: absolute;
   top: 0;
   left: 0;
@@ -31,7 +30,7 @@ table {
   justify-content: center;
 }
 
-.bhaai-rate-limit-reached {
+.baan-rate-limit-reached {
   max-width: 360px;
   text-align: center;
 }
@@ -46,12 +45,23 @@ table {
   max-width: 124px;
 }
 
-.headings {
-  text-align: end;
+button {
+  margin-left: 10px;
 }
 
 th, td {
   text-align: center;
   font-family: monospace !important;
 }
-  
+
+.heading {
+  text-align: center;
+  padding: 1em;
+  font-family: monospace !important;
+
+  h1 {
+    margin: 0px;
+    font-family: monospace !important;
+  }
+}
+ 
