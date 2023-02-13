@@ -48,7 +48,7 @@
             <th mat-header-cell *matHeaderCellDef>Actions</th>
             <td mat-cell *matCellDef="let row">
                 <button mat-raised-button color="accent" (click)="editBaan(row)">Edit</button>
-                <button mat-raised-button color="warn" (click)="deleteBaan(row.id)">Delete</button>
+                <button mat-raised-button color="warn" (click)="deleteBaan(row._id)">Delete</button>
             </td>
         </ng-container>
   

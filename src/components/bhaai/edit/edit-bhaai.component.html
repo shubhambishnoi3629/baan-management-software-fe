@@ -17,5 +17,5 @@
 </div>
 <div mat-dialog-actions class="actions">
   <button mat-raised-button color="accent" (click)="onNoClick()">close</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data.marriage && data.date" cdkFocusInitial>{{data.id ? 'Edit' : 'Create'}}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{data.id ? 'Edit' : 'Create'}}</button>
 </div>
