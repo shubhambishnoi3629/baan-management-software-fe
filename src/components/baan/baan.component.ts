@@ -78,9 +78,9 @@ export class BaanComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.updateBaan(result.id, this.bhaaiId, result).subscribe(() => {
+      this.apiService.updateBaan(result._id, this.bhaaiId, result).subscribe(() => {
         this.loadAgain.next({});
-        this._snackBar.open('Bhaai has been updated', 'close');
+        this._snackBar.open('Baan has been updated', 'close');
       });
     });
   }
@@ -88,7 +88,7 @@ export class BaanComponent implements AfterViewInit {
   deleteBaan(baanId: string) {
     this.apiService.deleteBaan(baanId, this.bhaaiId).subscribe(() => {
       this.loadAgain.next({});
-      this._snackBar.open('Bhaai has been deleted', 'close');
+      this._snackBar.open('Baan has been deleted', 'close');
     })
   }
 

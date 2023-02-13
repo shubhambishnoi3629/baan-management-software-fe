@@ -8,13 +8,6 @@
 export type Baan = Baan1 & Baan2;
 export type Baan1 = BaanBase;
 
-export type BaanBaseKeys =
-    'firstName'
-    | 'lastName'
-    | 'fathersName'
-    | 'address'
-    | 'nickName';
-
 export interface BaanBase {
     firstName: string;
     lastName: string;
@@ -24,6 +17,6 @@ export interface BaanBase {
     amount: number;
 }
 export interface Baan2 {
-    id: string;
+    _id: string;
     BhaaiId?: string;
 }

@@ -14,5 +14,5 @@ export interface BhaaiBase {
     date: string;
 }
 export interface Bhaai2 {
-    id: string;
+    _id: string;
 }

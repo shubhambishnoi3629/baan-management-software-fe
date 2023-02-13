@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{data.id ? 'Edit' : 'Create'}} Bhaai</h1>
+<h1 mat-dialog-title>{{data._id ? 'Edit' : 'Create'}} Bhaai</h1>
 <div mat-dialog-content>
   <p>
     <mat-form-field appearance="fill">
@@ -17,5 +17,5 @@
 </div>
 <div mat-dialog-actions class="actions">
   <button mat-raised-button color="accent" (click)="onNoClick()">close</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{data.id ? 'Edit' : 'Create'}}</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>{{data._id ? 'Edit' : 'Create'}}</button>
 </div>

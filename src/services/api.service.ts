@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Bhaai, BhaaiBase, BhaaiList } from 'src/api/types/BhaaiList';
 import { Observable, of } from 'rxjs';
-import { Baan, BaanBase, BaanBaseKeys } from 'src/api/types/Baan';
+import { Baan, BaanBase } from 'src/api/types/Baan';
 import { BaanList } from 'src/api/types/BaanList';
 import { BhaaiTotal } from 'src/api/types/BhaaiTotal';
 
@@ -74,7 +74,7 @@ export class ApiService {
     searchBaan(
         baan: BaanBase,
     ): Observable<void> {
-        const queryParams = Object.keys(baan).map((key: unknown) => (`${key}=${baan[key as BaanBaseKeys]}`)).join('&');
+        const queryParams = Object.keys(baan).map((key) => (`${key}=${this.getValue(baan, key)}`)).join('&');
         return this.http.delete<void>(`${this.baseURL}/search?${queryParams}`);
     }
 
@@ -86,6 +86,10 @@ export class ApiService {
             amount,
             baanId,
         });
+    }
+
+    getValue(obj: any, key: string) {
+        return obj[key];
     }
     
 }

@@ -37,7 +37,7 @@ export class SearchBaanComponent {
     }
 
     this.dialogRef.close({
-      bhaaiId: this.data[0].id,
+      bhaaiId: this.data[0]._id,
       amount: this.giveBaanAmount,
     });
   }

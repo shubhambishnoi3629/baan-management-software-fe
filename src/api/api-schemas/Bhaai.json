@@ -6,13 +6,13 @@
     }
   ],
   "properties": {
-    "id": {
+    "_id": {
       "type": "string",
       "format": "uuid"
     }
   },
   "required": [
-    "id"
+    "_id"
   ],
   "additionalProperties": false,
   "title": "Bhaai",

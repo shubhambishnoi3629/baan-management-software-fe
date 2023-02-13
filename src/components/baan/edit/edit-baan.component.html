@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{data.search ? 'Search' : data.id ? 'Edit' : 'Create'}} Baan</h1>
+<h1 mat-dialog-title>{{data.search ? 'Search' : data._id ? 'Edit' : 'Create'}} Baan</h1>
 <div mat-dialog-content>
   <p>
     <mat-form-field appearance="fill">
@@ -34,6 +34,6 @@
 <div mat-dialog-actions class="actions">
   <button mat-raised-button color="accent" (click)="onNoClick()">close</button>
   <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>
-    {{data.search ? 'Search' : data.id ? 'Edit' : 'Create'}}
+    {{data.search ? 'Search' : data._id ? 'Edit' : 'Create'}}
   </button>
 </div>

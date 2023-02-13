@@ -11,20 +11,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // define a real custom palette (using http://mcg.mbitson.com)
 $bv-brand: (
-    50 : #c0c3c3,
-    100 : #989d9d,
-    200 : #7c8282,
-    300 : #595d5d,
-    400 : #4a4e4e,
-    500 : #3b3e3e,
-    600 : #2c2e2e,
-    700 : #1d1f1f,
-    800 : #0e0f0f,
-    900 : #000000,
-    A100 : #a6d2d2,
-    A200 : #63afaf,
-    A400 : #476565,
-    A700 : #444f4f,
+    50 : #e4e4e5,
+    100 : #bcbcbd,
+    200 : #909092,
+    300 : #636466,
+    400 : #414245,
+    500 : #202124,
+    600 : #1c1d20,
+    700 : #18181b,
+    800 : #131416,
+    900 : #0b0b0d,
+    A100 : #5454ff,
+    A200 : #2121ff,
+    A400 : #0000ed,
+    A700 : #0000d4,
     contrast: (
         50 : #000000,
         100 : #000000,
@@ -36,8 +36,8 @@ $bv-brand: (
         700 : #ffffff,
         800 : #ffffff,
         900 : #ffffff,
-        A100 : #000000,
-        A200 : #000000,
+        A100 : #ffffff,
+        A200 : #ffffff,
         A400 : #ffffff,
         A700 : #ffffff,
     )
@@ -85,3 +85,12 @@ $bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent);
 
 // include the custom theme object into the angular material theme
 @include angular-material-theme($bv-theme);
+
+.mat-mdc-table, .mdc-data-table__header-cell, .mdc-data-table__cell {
+    background: #202124 !important;
+    color: #aaa !important;
+}
+
+.mat-mdc-raised-button:not(:disabled) {
+    color: white !important;
+}

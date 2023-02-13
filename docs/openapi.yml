@@ -249,12 +249,12 @@ components:
       allOf:
         - $ref: '#/components/schemas/BhaaiBase'
       properties:
-        id:
+        _id:
           type: string
           format: uuid
           example: fsdfsdf-fsdfsdf-sdfsdf-fsdf3
       required:
-        - id
+        - _id
       additionalProperties: false
     BhaaiBase:
       type: object
@@ -307,7 +307,7 @@ components:
       allOf:
         - $ref: '#/components/schemas/BaanBase'
       properties:
-        id:
+        _id:
           type: string
           format: uuid
           example: fsdfsdf-fsdfsdf-sdfsdf-fsdf3
@@ -316,7 +316,7 @@ components:
           format: uuid
           example: addf-dddfg-hhjj-hhjk
       required:
-        - id
+        - _id
         - bhaaiId
       additionalProperties: false
     GiveBaan:

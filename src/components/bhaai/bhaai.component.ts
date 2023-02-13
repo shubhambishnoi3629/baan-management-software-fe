@@ -105,7 +105,7 @@ export class BhaaiComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.updateBhaai(result.id, result).subscribe(() => {
+      this.apiService.updateBhaai(result._id, result).subscribe(() => {
         this.loadAgain.next({});
         this._snackBar.open('Bhaai has been updated', 'close');
       });

@@ -18,6 +18,6 @@ export interface BaanBase {
     amount: number;
 }
 export interface Baan2 {
-    id: string;
+    _id: string;
     BhaaiId?: string;
 }
