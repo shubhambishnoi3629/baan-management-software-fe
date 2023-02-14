@@ -10,7 +10,7 @@ import { CustomerBase } from 'src/api/types/Customer';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
-    baseURL = 'http://localhost:3000/api';
+    baseURL = '/api';
     accessToken: string | null = null;
     constructor(
         private http: HttpClient,
