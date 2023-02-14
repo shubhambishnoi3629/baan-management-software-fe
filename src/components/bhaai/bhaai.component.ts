@@ -80,9 +80,12 @@ export class BhaaiComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.searchBaan(result).subscribe(() => {
-        this.openSearchResult(result);
-      });
+      if (result) {
+        delete result.search;
+        this.apiService.searchBaan(result).subscribe((data) => {
+          this.openSearchResult(data);
+        });
+      }
     });
   }
 

@@ -37,13 +37,12 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div>
-
+    <div class="form">
       <mat-form-field appearance="fill">
         <mat-label>New Baan Amount</mat-label>
         <input matInput type="number" [(ngModel)]="giveBaanAmount">
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="giveBaan()">Give Baan</button>
+      <button mat-raised-button color="accent" (click)="giveBaan()">Give Baan</button>
     </div>
   </div>
   

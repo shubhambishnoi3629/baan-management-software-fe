@@ -13,8 +13,8 @@ import { EditBaanComponent } from 'src/components/baan/edit/edit-baan.component'
   templateUrl: './search-baan.component.html',
 })
 export class SearchBaanComponent {
-  displayedColumns: string[] = ['id', 'name', 'fathersName', 'village', 'amount', 'actions'];
-  dataList: Baan[] = [];
+  displayedColumns: string[] = ['id', 'name', 'fathersName', 'village', 'amount'];
+  dataList: BaanList = [];
 
   bhaai: BhaaiTotal = {} as any;
 

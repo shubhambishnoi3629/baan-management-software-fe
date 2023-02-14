@@ -10,7 +10,7 @@ import { CustomerBase } from 'src/api/types/Customer';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
-    baseURL = '/api';
+    baseURL = 'http://localhost:3000/api';
     accessToken: string | null = null;
     constructor(
         private http: HttpClient,
@@ -100,9 +100,9 @@ export class ApiService {
 
     searchBaan(
         baan: BaanBase,
-    ): Observable<void> {
+    ): Observable<BaanList> {
         const queryParams = Object.keys(baan).map((key) => (`${key}=${this.getValue(baan, key)}`)).join('&');
-        return this.http.delete<void>(`${this.baseURL}/search?${queryParams}`, this.getHeaders());
+        return this.http.get<BaanList>(`${this.baseURL}/search?${queryParams}`, this.getHeaders());
     }
 
     giveBaan(
