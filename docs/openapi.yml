@@ -2,7 +2,45 @@ openapi : "3.0.3"
 info:
   title : Baan management API overview
   version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
 paths:
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      operationId: login
+      summary: to login
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/CustomerBase'
+      responses:
+        "200":
+          description: login token
+          content:
+            applocation/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/AccessToken'
+  /auth/signup:
+    post:
+      tags:
+        - Auth
+      operationId: signup
+      summary: to sign up
+      requestBody:
+        content:
+          application/json; charset=utf-8:
+            schema:
+              $ref: '#/components/schemas/CustomerBase'
+      responses:
+        "200":
+          description: login token
+          content:
+            applocation/json; charset=utf-8:
+              schema:
+                $ref: '#/components/schemas/Customer'
   /bhaai:
     get:
       tags:
@@ -231,6 +269,39 @@ components:
         type: number
         example: 1
   schemas:
+    CustomerBase:
+      type: object
+      properties:
+        email:
+          type: string
+          example: rahul@gmail.com
+        password:
+          type: string
+          example: dksjfscsf
+      additionalProperties: false
+      required:
+        - email
+        - password
+    AccessToken:
+      type: object
+      properties:
+        access_token:
+          type: string
+          example: sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsfsd
+      additionalProperties: false
+      required:
+        - access_token
+    Customer:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/CustomerBase'
+      properties:
+        _id:
+          type: string
+          example: daasda-dsa-das-das
+      additionalProperties: false
+      required:
+        - _id
     BhaaiList:
       type: array
       items:

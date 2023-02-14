@@ -13,7 +13,7 @@ export class EditBaanComponent {
         @Inject(MAT_DIALOG_DATA) public data: Baan & { search: boolean },
     ) {}
 
-    onNoClick(): void {
-        this.dialogRef.close(this.data);
+    onNoClick(status: boolean): void {
+        this.dialogRef.close(status ? this.data : null);
     }
 }

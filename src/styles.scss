@@ -94,3 +94,8 @@ $bv-theme: mat-light-theme($bv-palette-primary, $bv-palette-accent);
 .mat-mdc-raised-button:not(:disabled) {
     color: white !important;
 }
+
+.mdc-text-field {
+    border-bottom-right-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}

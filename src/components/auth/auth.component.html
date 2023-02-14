@@ -1,0 +1,52 @@
+<div class="container">
+  <div *ngIf="viewType === 'login'">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Email*</mat-label>
+        <input matInput [(ngModel)]="email">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Password*</mat-label>
+        <input matInput type="password" [(ngModel)]="password">
+      </mat-form-field>
+    </p>
+    <p>
+      <button mat-raised-button color="accent" (click)="login()">
+        Login
+      </button>
+      <button mat-raised-button color="warn" (click)="viewType = 'signup'">
+        Signup
+      </button>
+    </p>
+  </div>
+  <div *ngIf="viewType === 'signup'">
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Email*</mat-label>
+        <input matInput [(ngModel)]="s_email">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Password*</mat-label>
+        <input matInput type="text" [(ngModel)]="s_password">
+      </mat-form-field>
+    </p>
+    <p>
+      <mat-form-field appearance="fill">
+        <mat-label>Confirm Password*</mat-label>
+        <input matInput type="password" [(ngModel)]="s_cpassword">
+      </mat-form-field>
+    </p>
+    <p>
+      <button mat-raised-button color="accent" (click)="signup()">
+        Signup
+      </button>
+      <button mat-raised-button color="warn" (click)="viewType = 'login'">
+        Login
+      </button>
+    </p>
+  </div>
+</div>

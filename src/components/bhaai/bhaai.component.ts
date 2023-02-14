@@ -63,10 +63,12 @@ export class BhaaiComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.createBhaai(result).subscribe(() => {
-        this.loadAgain.next({});
-        this._snackBar.open('Bhaai has been created', 'close');
-      });
+      if (result) {
+        this.apiService.createBhaai(result).subscribe(() => {
+          this.loadAgain.next({});
+          this._snackBar.open('Bhaai has been created', 'close',  { duration: 2000 });
+        });
+      }
     });
   }
 
@@ -93,7 +95,7 @@ export class BhaaiComponent implements AfterViewInit {
       if (result) {
         this.apiService.giveBaan(result.bhaaiId, result.amount).subscribe(() => {
           this.loadAgain.next({});
-          this._snackBar.open('New baan has been added', 'close');
+          this._snackBar.open('New baan has been added', 'close',  { duration: 2000 });
         });
       }
     });
@@ -105,17 +107,19 @@ export class BhaaiComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.updateBhaai(result._id, result).subscribe(() => {
-        this.loadAgain.next({});
-        this._snackBar.open('Bhaai has been updated', 'close');
-      });
+      if (result) {
+        this.apiService.updateBhaai(result._id, result).subscribe(() => {
+          this.loadAgain.next({});
+          this._snackBar.open('Bhaai has been updated', 'close',  { duration: 2000 });
+        });
+      }
     });
   }
 
   deleteBhaai(bhaaiId: string) {
     this.apiService.deleteBhaai(bhaaiId).subscribe(() => {
       this.loadAgain.next({});
-      this._snackBar.open('Bhaai has been deleted', 'close');
+      this._snackBar.open('Bhaai has been deleted', 'close',  { duration: 2000 });
     })
   }
 

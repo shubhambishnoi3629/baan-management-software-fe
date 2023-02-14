@@ -32,7 +32,7 @@
   </p>
 </div>
 <div mat-dialog-actions class="actions">
-  <button mat-raised-button color="accent" (click)="onNoClick()">close</button>
+  <button mat-raised-button color="accent" (click)="onNoClick(false)">close</button>
   <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>
     {{data.search ? 'Search' : data._id ? 'Edit' : 'Create'}}
   </button>

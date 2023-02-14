@@ -1,7 +1,7 @@
 import {Component, AfterViewInit} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import {of as observableOf, Subject} from 'rxjs';
+import {of as observableOf, of, Subject} from 'rxjs';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
 import { Baan } from 'src/api/types/BaanList';
 import { BhaaiTotal } from 'src/api/types/BhaaiTotal';
@@ -32,6 +32,7 @@ export class BaanComponent implements AfterViewInit {
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
+    private router: Router,
     public dialog: MatDialog,
     private _snackBar: MatSnackBar,
   ) {
@@ -54,7 +55,16 @@ export class BaanComponent implements AfterViewInit {
         }),
       )
       .subscribe(data => (this.data = data));
-    this.apiService.getBhaai(this.bhaaiId, true).subscribe((result) => {
+    this.apiService.getBhaai(this.bhaaiId, true)
+    .pipe(
+      catchError(() => {
+        this.apiService.accessToken = null;
+        this.router.navigate(['login']);
+
+        return of({} as any);
+      })
+    )
+    .subscribe((result) => {
       this.bhaai = result;
     });
   }
@@ -65,10 +75,12 @@ export class BaanComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.createBaan(this.bhaaiId, result).subscribe(() => {
-        this.loadAgain.next({});
-        this._snackBar.open('Baan has been added', 'close');
-      });
+      if (result) {
+        this.apiService.createBaan(this.bhaaiId, result).subscribe(() => {
+          this.loadAgain.next({});
+          this._snackBar.open('Baan has been added', 'close',  { duration: 2000 });
+        });
+      }
     });
   }
 
@@ -78,17 +90,19 @@ export class BaanComponent implements AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.apiService.updateBaan(result._id, this.bhaaiId, result).subscribe(() => {
-        this.loadAgain.next({});
-        this._snackBar.open('Baan has been updated', 'close');
-      });
+      if (result) {
+        this.apiService.updateBaan(result._id, this.bhaaiId, result).subscribe(() => {
+          this.loadAgain.next({});
+          this._snackBar.open('Baan has been updated', 'close',  { duration: 2000 });
+        });
+      }
     });
   }
 
   deleteBaan(baanId: string) {
     this.apiService.deleteBaan(baanId, this.bhaaiId).subscribe(() => {
       this.loadAgain.next({});
-      this._snackBar.open('Baan has been deleted', 'close');
+      this._snackBar.open('Baan has been deleted', 'close',  { duration: 2000 });
     })
   }
 

@@ -14,6 +14,7 @@ import { EditBhaaiComponent } from 'src/components/bhaai/edit/edit-bhaai.compone
 import { EditBaanComponent } from 'src/components/baan/edit/edit-baan.component';
 import { BaanComponent } from 'src/components/baan/baan.component';
 import { SearchBaanComponent } from 'src/components/bhaai/searchresult/search-baan.component';
+import { AuthComponent } from 'src/components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { SearchBaanComponent } from 'src/components/bhaai/searchresult/search-ba
     BaanComponent,
     EditBaanComponent,
     SearchBaanComponent,
+    AuthComponent,
   ],
   imports: [
     BrowserModule,

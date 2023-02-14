@@ -13,7 +13,7 @@ export class EditBhaaiComponent {
         @Inject(MAT_DIALOG_DATA) public data: Bhaai,
     ) {}
 
-    onNoClick(): void {
-        this.dialogRef.close(this.data);
+    onNoClick(status: boolean): void {
+        this.dialogRef.close(status ? this.data : null);
     }
 }
